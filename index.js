@@ -94,6 +94,17 @@ app.get("/remain", async (req, res) => {
   res.status(200).json({ message: "Remaining Seats ", remainingSeats });
 });
 
+
+app.get("/clear", async (req, res) => {
+  // const remainingSeats = await Seat.find({ booked: false }).count();
+  // res.status(200).json({ message: "Remaining Seats ", remainingSeats });
+
+  initializeCoach()
+
+});
+
+
+
 app.get("/seats", async (req, res) => {
   try {
     const getReserveSeats = await Seat.find();
