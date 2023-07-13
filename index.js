@@ -127,15 +127,16 @@
 
 const express = require("express");
 const cors = require("cors");
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 require("./database");
 
 const Seat = require("./Models/seat");
 
 const app = express();
 app.use(cors());
-app.use(bodyParser.json());
-
+// app.use(bodyParser.json());
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
 const port = 8080;
 
 // Initialize seat data
@@ -164,9 +165,11 @@ initializeCoach();
 
 // API endpoint for reserving seats
 app.post("/seats", async (req, res) => {
+
   try {
     const numSeats = req.body.numSeats;
-
+    console.log(numSeats)
+    // console.log(req)
     if (numSeats <= 0 || numSeats > 7) {
       res.status(400).json({ error: "Invalid number of seats" });
       return;
