@@ -174,7 +174,7 @@ app.post("/seats", async (req, res) => {
       res.status(400).json({ error: "Invalid number of seats" });
       return;
     }
-
+      
     // Find the seats that are not already booked
     let  availableSeats = await Seat.find({ booked: false });
       // availableSeats=availableSeats.sort((a,b)=>a.number-b.number)
